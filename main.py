@@ -37,7 +37,7 @@ while (True):
     # )
     # smile = smile_cascade.detectMultiScale(
     #     frame,
-    #     minNeighbors=5,
+    #     minNeighbors=20,
     #     minSize=(20,20),
     # )
 
