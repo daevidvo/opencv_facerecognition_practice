@@ -2,6 +2,8 @@ import cv2
 
 # load the cascade data from file provided by opencv 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_profile_cascade = cv2.CascadeClassifier('haarcascade_profileface.xml')
+
 
 
 # eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
@@ -23,6 +25,11 @@ while (True):
         # minimum size to detect in px
         minSize=(20,20),
     )
+    faces_profile = face_profile_cascade.detectMultiScale(
+        frame,
+        minNeighbors=5,
+        minSize=(20,20)
+    )
     # eyes = eye_cascade.detectMultiScale(
     #     frame,
     #     minNeighbors=5,
@@ -36,6 +43,8 @@ while (True):
 
     # draw the rectangle over the faces on frame starting at x,y and ending at x+w, y+h. Has BGR color and thickness at the end
     for (x,y,w,h) in faces:
+        cv2.rectangle(frame, (x,y), (x+w, y+h), (0,0,255), 2)
+    for (x,y,w,h) in faces_profile:
         cv2.rectangle(frame, (x,y), (x+w, y+h), (0,0,255), 2)
     # for (x,y,w,h) in eyes:
     #     cv2.rectangle(frame, (x,y), (x+w, y+h), (255,0,0), 2)
